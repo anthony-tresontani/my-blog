@@ -2,8 +2,8 @@
 layout: post
 title: "Producing outcome"
 description: "I found a way to be a great developer"
-category: 
-tags: []
+category: "Thoughts"
+tags: ["Thoughts"]
 ---
 {% include JB/setup %}
 

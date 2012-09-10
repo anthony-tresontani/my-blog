@@ -1,4 +1,10 @@
-
+---
+layout: post
+title: "Django pratical test tool"
+description: "You want to test, here is a part of how, a small part"
+category: "Python"
+tags: ["Python", "tests"]
+---
 Testing Django may seems complicated sometimes, and especially with some django features full of
 encapsulation. This can be easily fixed by some python tricks.
 

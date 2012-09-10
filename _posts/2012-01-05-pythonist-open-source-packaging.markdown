@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Packaging a python app"
+description: "Package an app for the other goods"
+category: "Python"
+tags: ["Python"]
+---
+
 or what you should know to package a python application.
 
 This blog is about the easiest place to put your code and do not fit for big project.
