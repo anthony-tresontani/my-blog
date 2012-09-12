@@ -31,7 +31,7 @@ And you will get:
 Now, if we translate this in a Django way:
 
     class Duck(models.Model):
-        name = models.CharField(...)
+        name = models.CharField(max_length=15)
         def quack(self):
             print "QUACK"
 
@@ -97,20 +97,20 @@ Much better.
 
 We also have custom display of theses products, eg a template can look like:
 
-{% for product in products %}
-    {% if product.is_customised %}
-        {% include "customised.html" %}
-    {% elif product.is_grouped %}
-        {% include "grouped.html" %}
-    {% else %}
-        {% include "normal.html" %}
-{% endfor %}
+    {% for product in products %}
+        {% if product.is_customised %}
+            {% include "customised.html" %}
+        {% elif product.is_grouped %}
+            {% include "grouped.html" %}
+        {% else %}
+            {% include "normal.html" %}
+    {% endfor %}
 
 why not:
 
-{% for product in products %}
-    {% include product.template_name %}
-{% endfor %}
+    {% for product in products %}
+        {% include product.template_name %}
+    {% endfor %}
 
 That's shorter, more DRY and easier to maintain. I want that in my project.
 
@@ -129,7 +129,7 @@ Now, we should find a way to let Django know these rules. The `get_proxy_class` 
     from django.dispatch.dispatcher import receiver
 
     class Duck(models.Model):
-        name = models.CharField(...)
+        name = models.CharField(max_length=15)
         def quack(self):
             print "QUACK"
 
@@ -180,8 +180,8 @@ But there is still:
 - You cannot easily define model with different data. We tried and we failed, spending many hours trying to understand why this object is badly initialized.
 - Your main class is responsible to provide this mechanism, IE your parent class knows all its children. That would prevent to use this mechanism for an external application. This limitation can be easily worked around by providing a function external to the class, like:
 
-def get_proxy_class(instance):
-    if isinstance(instance, Duck):
-        ... previous code ...
+    def get_proxy_class(instance):
+        if isinstance(instance, Duck):
+            ... previous code ...
 
 That's it.
