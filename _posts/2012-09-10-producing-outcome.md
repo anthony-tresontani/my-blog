@@ -32,12 +32,12 @@ Things valuable are:
 - Things which increase targeted knowledge (sorry guys, reading all hackernews article is not really valuable)
 - Things which increase opportunities
 
-** Increase money **
+**Increase money**
 
 Obvious but hard to achieve. All the others may have an impact on this one. Getting a better salary is one way. Doing some freelancing is another one.
 When you have a good reputation/visibility, that should be easier.
 
-** Increase visibility **
+**Increase visibility**
 
 We are unknown. Lost into thousands of other devs. Getting visibility is one problematic a dev should try to solve, patiently, but other time.
 When your next awesome company will contact you for a new job offer, they will try to get some info about you.
@@ -46,15 +46,15 @@ Give what you've done to the world but do it well. README, docs, easy installati
 
 Write blogs, open source your best tool, participate in stack overflow, tweet dev tips.
 
-** Increase reputation **
+**Increase reputation**
 
 There is things which gives you credit. Being Flask author ([@armin ronacher](http://lucumr.pocoo.org/)) gives you better credit when you try to sell yourself as a Flask expert (just an example, no fact here). Same if you are a Django core developer. Not that's easy to do. There is another which is easier, speaks at a conference or a meetup group on a subject you know well. You will get extra visibility, for sure, but you get more than that. You will be seen as a top developer, at least, by people who liked your talk. I've seen many Django talks at DjangoCon and DJUGL, 95% of the speakers where top developers, at least according to me.
 
-** Increase knowledge **
+**Increase knowledge**
 
 That's my favorite occupation, learning new stuffs and ready about new stuffs. Useless most of the time, incredibily useless sometimes. I get great benefit from actively learning Django before I moved to London. But that was targeted and deep study, not ready some random blog post on the internet. You should focus on valuable knowledge, something which brings you later benefits. Any other knowledge is not to be prohibited, but it's not work, it's pleasure.
 
-** Increase opportunities **
+**Increase opportunities**
 
 You may all think of becoming rich with the new unavoidable website or other projects. Meeting right people help and can foster that incredibly. Meeting people is valuable. Great devs meet the others.
 
