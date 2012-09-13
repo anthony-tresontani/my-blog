@@ -49,6 +49,7 @@ Now, if we translate this in a Django way:
         duck.quack()
 
 you get:
+
     "QUACK"
     "QUACKQUACKQUACKQUACK"
     "QUACK"
@@ -59,23 +60,23 @@ Why doesn't Django call the right method? Cause Django don't remember and we did
 
 In the database, we would have something like that:
 
-> select * from duck_duck;
-ID | NAME
----------
-1  | fifi
-2  | loulou
+    > select * from duck_duck;
+    ID | NAME
+    ---------
+    1  | fifi
+    2  | loulou
 
 There is obviously nothing which says "Loulou is more than a duck, he is a frenzy duck".
 
-## Why you should care
+## Why you should care?
 
 That doesn't seem to be such a big deal.
 
 I am working in a company where we build e-commerce websites. Different kinds of products have different behavior.
 We can have:
- - Normal product
- - Product grouped together, like multiple sizes T-shirt
- - Customisable product, like a T-shirt where you can define your own logo
+- Normal product
+- Product grouped together, like multiple sizes T-shirt
+- Customisable product, like a T-shirt where you can define your own logo
 
 
 Our code would have looked like:
@@ -97,20 +98,20 @@ Much better.
 
 We also have custom display of theses products, eg a template can look like:
 
-    {% for product in products %}
+   {% raw %} {% for product in products %}
         {% if product.is_customised %}
             {% include "customised.html" %}
         {% elif product.is_grouped %}
             {% include "grouped.html" %}
         {% else %}
             {% include "normal.html" %}
-    {% endfor %}
+    {% endfor %}{% endraw %}
 
 why not:
 
-    {% for product in products %}
+    {% raw %}{% for product in products %}
         {% include product.template_name %}
-    {% endfor %}
+    {% endfor %}{% endraw %}
 
 That's shorter, more DRY and easier to maintain. I want that in my project.
 
@@ -147,9 +148,9 @@ Now, we should find a way to let Django know these rules. The `get_proxy_class` 
 
     @receiver(post_init)                 #(3)
     def update_proxy_object(sender, **kwargs):
-    instance = kwargs['instance']
-    if hasattr(instance, "_get_proxy_class") and not instance._meta.proxy:
-        instance.__class__ = instance._get_proxy_object()
+        instance = kwargs['instance']
+        if hasattr(instance, "_get_proxy_class") and not instance._meta.proxy:
+            instance.__class__ = instance._get_proxy_object()
 
     fifi = Duck.objects.create(name="fifi")
     loulou = FrenzyDuck.objects.create(name="loulou")
@@ -161,14 +162,18 @@ Now, we should find a way to let Django know these rules. The `get_proxy_class` 
         duck.quack()
 
 now, you get:
+
     "QUACK"
     "QUACKQUACKQUACKQUACK"
     "QUACK"
     "QUACKQUACKQUACKQUACK"
 
 Here are some explanations:
+
 (1) You define a method which knows which class should be returned depending on some rules.
+
 (2) Your subclass should be a proxy. That's also working with real subclass, but I would avoid using it as you may have object not completely initialized and it's a nightmare to debug.
+
 (3) When the object is initialized by Django, if the get_proxy_class is defined, we cast the object. We do that only if the object is not already a proxy.
 
 With that solution, you can now have fully featured polymorphism at no extra (DB) cost.
